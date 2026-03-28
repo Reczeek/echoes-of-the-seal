@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class CombatManager : MonoBehaviour
         enemyHPBar.value = enemyHP;
         Debug.Log("Enemy HP = " + enemyHP);
         isPlayerTurn = false;
+        StartCoroutine(EnemyTurn());
     }
 
     public void EnemyAttack()
@@ -44,7 +46,14 @@ public class CombatManager : MonoBehaviour
         playerHP -= 8;
         playerHPBar.value = playerHP;
         isParryWindow = true;
+        parryIndicator.gameObject.SetActive(true);
         Debug.Log("Przeciwnik atakuje!");
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        yield return new WaitForSeconds(1f); // czeka 1 sekundę
+        EnemyAttack();
     }
 
     public void Parry()
