@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
   m_Name: TileGrass
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.IsometricRuleTile
-  m_DefaultSprite: {fileID: 0}
+  m_DefaultSprite: {fileID: 7482667652216324306, guid: 08525d3a8aebf9049a36650da00e946d, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []

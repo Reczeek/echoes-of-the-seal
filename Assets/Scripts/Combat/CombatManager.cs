@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
@@ -12,16 +14,27 @@ public class CombatManager : MonoBehaviour
 
     public bool isPlayerTurn;
     public bool isParryWindow; 
+    public GameObject combatUI;
+    public Slider playerHPBar;
+    public Slider enemyHPBar;
+    public TextMeshProUGUI enemyNameText;
+    public TextMeshProUGUI parryIndicator;
 
-    void StartCombat()
+    public void StartCombat()
     {
         isPlayerTurn = true;
+        combatUI.SetActive(true);
+        playerHPBar.value = playerHP;
+        playerHPBar.maxValue = playerMaxHP;
+        enemyHPBar.value = enemyHP;
+        enemyHPBar.maxValue = enemyMaxHP;
         Debug.Log("Walka rozpoczęta");
     }
 
     void PlayerAttack()
     {
         enemyHP -= 10;
+        enemyHPBar.value = enemyHP;
         Debug.Log("Enemy HP = " + enemyHP);
         isPlayerTurn = false;
     }
@@ -29,6 +42,7 @@ public class CombatManager : MonoBehaviour
     void EnemyAttack()
     {
         playerHP -= 8;
+        playerHPBar.value = playerHP;
         isParryWindow = true;
         Debug.Log("Przeciwnik atakuje!");
     }
@@ -40,6 +54,7 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Sparowano!");
             playerAP += 1;
             isParryWindow = false;
+            parryIndicator.gameObject.SetActive(false);
         }
     }
 
