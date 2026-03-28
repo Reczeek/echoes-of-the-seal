@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             combatManager.StartCombat();
+            combatManager.currentEnemy = this.gameObject;
         }
     }
 }

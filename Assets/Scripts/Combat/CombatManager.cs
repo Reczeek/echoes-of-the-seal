@@ -20,6 +20,7 @@ public class CombatManager : MonoBehaviour
     public Slider enemyHPBar;
     public TextMeshProUGUI enemyNameText;
     public TextMeshProUGUI parryIndicator;
+    public GameObject currentEnemy;
 
     public void StartCombat()
     {
@@ -63,6 +64,7 @@ public class CombatManager : MonoBehaviour
         if (enemyHP <= 0)
         {
             Debug.Log("Wygrałeś!");
+            Destroy(currentEnemy);
             combatUI.SetActive(false);
         }
         if (playerHP <= 0)
