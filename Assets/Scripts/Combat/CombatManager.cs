@@ -39,6 +39,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Enemy HP = " + enemyHP);
         isPlayerTurn = false;
         StartCoroutine(EnemyTurn());
+        CheckCombatEnd();
     }
 
     public void EnemyAttack()
@@ -48,12 +49,27 @@ public class CombatManager : MonoBehaviour
         isParryWindow = true;
         parryIndicator.gameObject.SetActive(true);
         Debug.Log("Przeciwnik atakuje!");
+        CheckCombatEnd();
     }
 
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1f); // czeka 1 sekundę
         EnemyAttack();
+    }
+
+    public void CheckCombatEnd()
+    {
+        if (enemyHP <= 0)
+        {
+            Debug.Log("Wygrałeś!");
+            combatUI.SetActive(false);
+        }
+        if (playerHP <= 0)
+        {
+            Debug.Log("Przegrałeś!");
+            combatUI.SetActive(false);
+        }
     }
 
     public void Parry()
