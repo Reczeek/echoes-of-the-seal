@@ -31,7 +31,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Walka rozpoczęta");
     }
 
-    void PlayerAttack()
+    public void PlayerAttack()
     {
         enemyHP -= 10;
         enemyHPBar.value = enemyHP;
@@ -39,7 +39,7 @@ public class CombatManager : MonoBehaviour
         isPlayerTurn = false;
     }
 
-    void EnemyAttack()
+    public void EnemyAttack()
     {
         playerHP -= 8;
         playerHPBar.value = playerHP;
@@ -47,7 +47,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Przeciwnik atakuje!");
     }
 
-    void Parry()
+    public void Parry()
     {
         if (isParryWindow == true)
         {
@@ -64,5 +64,21 @@ public class CombatManager : MonoBehaviour
         {
             Parry();
         }
+    }
+
+        public void UseSkill()
+    {
+        Debug.Log("Użyto umiejętności");
+    }
+
+    public void UseItem()
+    {
+        Debug.Log("Użyto przedmiotu");
+    }
+
+    public void Flee()
+    {
+        Debug.Log("Ucieczka!");
+        combatUI.SetActive(false);
     }
 }
