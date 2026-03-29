@@ -5,6 +5,7 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
+    public PlayerStats playerStats;
    public int playerHP;
     public int playerMaxHP;
     public int playerAP;
@@ -35,7 +36,7 @@ public class CombatManager : MonoBehaviour
 
     public void PlayerAttack()
     {
-        enemyHP -= 10;
+        enemyHP -= playerStats.CalculateDamage();
         enemyHPBar.value = enemyHP;
         Debug.Log("Enemy HP = " + enemyHP);
         isPlayerTurn = false;
