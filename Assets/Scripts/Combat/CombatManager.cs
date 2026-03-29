@@ -5,6 +5,7 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
+    public EnemyStats enemyStats;
     public PlayerStats playerStats;
    public int playerHP;
     public int playerMaxHP;
@@ -27,10 +28,15 @@ public class CombatManager : MonoBehaviour
     {
         isPlayerTurn = true;
         combatUI.SetActive(true);
-        playerHPBar.value = playerHP;
+        playerMaxHP = playerStats.CalculateMaxHP();
+        playerHP = playerMaxHP;
         playerHPBar.maxValue = playerMaxHP;
-        enemyHPBar.value = enemyHP;
-        enemyHPBar.maxValue = enemyMaxHP;
+        playerHPBar.value = playerHP;
+        enemyHP = enemyStats.maxHP;
+        enemyMaxHP = enemyStats.maxHP;
+        enemyHPBar.maxValue = enemyStats.maxHP;
+        enemyHPBar.value = enemyStats.maxHP;
+        enemyNameText.text = enemyStats.enemyName;
         Debug.Log("Walka rozpoczęta");
     }
 
@@ -46,7 +52,7 @@ public class CombatManager : MonoBehaviour
 
     public void EnemyAttack()
     {
-        playerHP -= 8;
+        playerHP -= enemyStats.damage;
         playerHPBar.value = playerHP;
         isParryWindow = true;
         parryIndicator.gameObject.SetActive(true);
